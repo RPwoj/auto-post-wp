@@ -2,6 +2,19 @@
 /* admin panel template */
 ?>
 
-<div class="container">
-    <h1>Admin panel page</h1>
+<div class="ap--container">
+    <div class="ap--row">
+        <div class="ap--col">
+            <div class="ap--data-holder">
+                
+            </div>
+        </div>
+    </div>
+    <div class="ap--row">
+        <div class="ap--col">
+            <div class="ap--btn-holder">
+                <button class="ap--btn ap--btn-update-data">Update data</button>
+            </div>
+        </div>
+    </div>
 </div>
