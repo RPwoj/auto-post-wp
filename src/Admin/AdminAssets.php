@@ -1,5 +1,5 @@
 <?php
-namespace AutoPost\AdminPanel;
+namespace AutoPost\Admin;
 
 class AdminAssets {
     public function register() {

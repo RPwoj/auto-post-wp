@@ -1,5 +1,7 @@
 <?php
-namespace AutoPost\AdminPanel;
+namespace AutoPost\Admin;
+
+use AutoPost\Services\Post;
 
 class AdminMenu {
     public function register() {
@@ -11,6 +13,7 @@ class AdminMenu {
     }
 
     public function render(): void {
+        (new Post())->get();
         require AUTO_POST_PLUGIN_PATH . '/templates/admin-panel-template.php';
     }
 }

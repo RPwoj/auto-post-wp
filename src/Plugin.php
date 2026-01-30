@@ -1,7 +1,7 @@
 <?php
 namespace AutoPost;
 
-use AutoPost\AdminPanel\Setup;
+use AutoPost\Admin\Setup;
 
 class Plugin {
     public function init() {
