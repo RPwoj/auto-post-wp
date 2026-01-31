@@ -1,5 +1,5 @@
 <?php
-namespace AutoPost\Admin;
+namespace GoldPrices\Admin;
 
 class AdminAssets {
     public function register() {
@@ -7,7 +7,14 @@ class AdminAssets {
     }
 
     public function enqueueAssets() {
-        wp_register_script('admin-script', AUTO_POST_PLUGIN_URL . 'assets/admin/admin-script.js');
-        wp_enqueue_script( 'admin-script' );
+        wp_register_script(
+            'admin-script',
+            GOLD_PRICES_PLUGIN_URL . 'assets/admin/admin-script.js',
+            ['jquery'],
+            '1.0',
+            true
+        );
+
+        wp_enqueue_script('admin-script');
     }
 }

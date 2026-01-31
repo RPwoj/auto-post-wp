@@ -1,10 +1,12 @@
 <?php
-namespace AutoPost;
+namespace GoldPrices;
 
-use AutoPost\Admin\Setup;
+use GoldPrices\Admin\Setup as Admin;
+use GoldPrices\Services\Setup as Services;
 
 class Plugin {
     public function init() {
-        (new Setup())->init();
+        (new Admin())->init();
+        (new Services())->init();
     }
 }

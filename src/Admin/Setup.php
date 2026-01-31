@@ -1,9 +1,9 @@
 <?php
-namespace AutoPost\Admin;
+namespace GoldPrices\Admin;
 
-use AutoPost\Admin\AdminMenu;
-use AutoPost\Admin\AdminAssets;
-use AutoPost\Admin\GoldPricePost;
+use GoldPrices\Admin\AdminMenu;
+use GoldPrices\Admin\AdminAssets;
+use GoldPrices\Admin\GoldPricePost;
 
 class Setup {
     public function init() {

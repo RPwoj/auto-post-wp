@@ -1,25 +1,25 @@
 const data = {
-    updateData: () => {
-        const json = data.getData();
-        console.log(json);
-    },
-
-     getData: async () => {
-        const url = "https://api.nbp.pl/api/cenyzlota/last/5/?format=json";
+    updateData: async () => {
+        const url = "http://localhost/project-wp-01/wp-admin/admin-ajax.php";
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    action: 'save_gold_prices'
+                })
+            });
             if (!response.ok) {
                 throw new Error(`Response status: ${response.status}`);
             }
             const result = await response.json();
-            console.log(result);
+            // console.log(result);
         } catch (error) {
             console.error(error.message);
         }
-
-    }
-
-    
+    },
 }
 
 const updateDataButton = {

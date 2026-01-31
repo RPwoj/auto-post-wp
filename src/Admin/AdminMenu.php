@@ -1,7 +1,5 @@
 <?php
-namespace AutoPost\Admin;
-
-use AutoPost\Services\Post;
+namespace GoldPrices\Admin;
 
 class AdminMenu {
     public function register() {
@@ -9,11 +7,10 @@ class AdminMenu {
     }
 
     public function addMenuPage() {
-        add_menu_page('Auto Post', 'Auto Post', 'manage_options', 'auto-post', [$this, 'render']);
+        add_menu_page('Gold Prices Plugin', 'Gold Prices Plugin', 'manage_options', 'gold-prices-plugin', [$this, 'render']);
     }
 
     public function render(): void {
-        (new Post())->get();
-        require AUTO_POST_PLUGIN_PATH . '/templates/admin-panel-template.php';
+        require GOLD_PRICES_PLUGIN_PATH . '/templates/admin-panel-template.php';
     }
 }
