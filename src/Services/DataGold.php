@@ -26,6 +26,7 @@ class DataGold {
         $data = (new Helpers())->jsonToArray($dataRaw);
         $dataUpdated = false;
         $dates = [];
+        $response = [];
     
         foreach($data as $price) {
             $dateExist = $this->checkPriceByDate($price['data']);
@@ -37,12 +38,17 @@ class DataGold {
         }
 
         if ($dataUpdated) {
-            $priceToRemove = $this->checkPriceToRemove(min($dates));
-            $priceRemoved = $this->removePrice($priceToRemove);
+            $pricesToRemove = $this->checkPriceToRemove(min($dates));
+
+            foreach($pricesToRemove as $price) {
+                $priceRemoved = $this->removePrice($price);
+                $response[] = $priceRemoved;
+            }
+
             (new AdminOptions())->updatePriceLastChange();
         }
-        
-        wp_send_json(['info' => $priceRemoved]);
+
+        wp_send_json($response);
     }
 
     public function createNewGoldPrice($date, $price) {
@@ -81,7 +87,7 @@ class DataGold {
     }
 
     public function checkPriceToRemove($date) {
-        $price = get_posts([
+        $prices = get_posts([
             'post_type'   => 'gold-price',
             'numberposts' => -1,
             'fields'      => 'ids',
@@ -92,7 +98,7 @@ class DataGold {
             ],
         ]);
 
-        return $price[0];
+        return $prices;
     }
     
     public function removePrice($id) {
