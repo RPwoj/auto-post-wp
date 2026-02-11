@@ -15,6 +15,7 @@ const data = {
                 throw new Error(`Response status: ${response.status}`);
             }
             const result = await response.json();
+            window.location.reload();
             // console.log(result);
         } catch (error) {
             console.error(error.message);

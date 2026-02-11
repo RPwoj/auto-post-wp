@@ -2,6 +2,7 @@
 namespace GoldPrices\Services;
 
 use GoldPrices\Services\Helpers;
+use GoldPrices\Admin\AdminOptions;
 
 class DataGold {
     public function register() {
@@ -38,8 +39,9 @@ class DataGold {
         if ($dataUpdated) {
             $priceToRemove = $this->checkPriceToRemove(min($dates));
             $priceRemoved = $this->removePrice($priceToRemove);
+            (new AdminOptions())->updatePriceLastChange();
         }
-
+        
         wp_send_json(['info' => $priceRemoved]);
     }
 
