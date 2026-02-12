@@ -12,5 +12,6 @@ class Setup {
         (new AdminAssets())->register();
         (new GoldPricePost())->register();
         (new AdminOptions())->register();
+        (new CronManager())->register();
     }
 }
