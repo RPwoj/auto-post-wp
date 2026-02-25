@@ -12,7 +12,7 @@ class GoldPricePost {
 
     // for debug only
     public function deleteAllGoldPrices() {
-        if ( ! current_user_can('delete_posts') ) return;
+        if (!current_user_can('delete_posts')) return;
 
         $posts = get_posts([
             'post_type'   => 'gold-price',
@@ -32,7 +32,7 @@ class GoldPricePost {
             'supports' => array('title'),
         );
 
-        register_post_type( 'gold-price', $args );
+        register_post_type('gold-price', $args);
     }
     
     public function registerPriceMeta() {

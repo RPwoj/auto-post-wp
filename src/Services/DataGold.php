@@ -8,7 +8,7 @@ class DataGold {
     public function register() {
         add_action('wp_ajax_save_gold_prices', [$this, 'savePrices']);
         add_action('wp_ajax_nopriv_save_gold_prices', [$this, 'savePrices']);
-        add_action( 'save_post', [$this, 'updatePriceMeta'] );
+        add_action('save_post', [$this, 'updatePriceMeta']);
     }
 
     public function get($number = 5) {
@@ -41,11 +41,12 @@ class DataGold {
             $pricesToRemove = $this->checkPriceToRemove(min($dates));
 
             foreach($pricesToRemove as $price) {
-                $priceRemoved = $this->removePrice($price);
-                $response[] = $priceRemoved;
+                $this->removePrice($price);
             }
 
-            (new AdminOptions())->updatePriceLastChange();
+            $options = new AdminOptions();
+            $options->updatePriceLastChange();
+            $response['lastChange'] = $options->getPriceLastChange();
         }
 
         wp_send_json($response);
@@ -102,7 +103,7 @@ class DataGold {
     }
     
     public function removePrice($id) {
-        $price = wp_delete_post( $id, false);
+        $price = wp_delete_post($id, false);
 
         return $price;
     }

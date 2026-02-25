@@ -7,6 +7,6 @@ class Helpers {
     }
 
     public function replaceDotInNumber($number) {
-        return (str_replace('.', ',', $number));
+        return str_replace('.', ',', $number);
     }
 }

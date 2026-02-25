@@ -1,6 +1,7 @@
 const data = {
     updateData: async () => {
-        const url = "http://localhost/project-wp-01/wp-admin/admin-ajax.php";
+        const url = goldPricesAdmin.ajaxUrl;
+
         try {
             const response = await fetch(url, {
                 method: 'POST',
@@ -14,21 +15,30 @@ const data = {
             if (!response.ok) {
                 throw new Error(`Response status: ${response.status}`);
             }
+
             const result = await response.json();
-            window.location.reload();
-            // console.log(result);
+            data.updateLastChange(result.lastChange);
+            
         } catch (error) {
             console.error(error.message);
         }
     },
+
+    updateLastChange: (data = false) => {
+        if (!data) return;
+
+        const dateHolder = document.querySelector('.gp--last-update-date');
+        dateHolder.innerText = data;
+    }
 }
 
 const updateDataButton = {
     initUpdateDataButton: () => {
-        const updateDataButton = document.querySelector('.ap--btn-update-data');
+        const updateDataButton = document.querySelector('.gp--btn-update-data');
         updateDataButton.addEventListener('click', data.updateData);
     }
 }
+
 
 window.addEventListener('load', () => {
     updateDataButton.initUpdateDataButton();
